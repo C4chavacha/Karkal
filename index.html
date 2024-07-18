@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización de Datos de Mundo Ideal Karcal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background: url('3626052.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .header {
+            padding: 20px 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .header h1 {
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3, h4 {
+            text-align: center;
+            color: #333;
+            margin-top: 40px;
+        }
+        .stats, .graph {
+            margin-bottom: 40px;
+        }
+        .stat-box {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            margin: 10px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .graph img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+        .description {
+            text-align: justify;
+            margin-top: 10px;
+        }
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        ul li {
+            background: #e9e9e9;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .indicator-row {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+        }
+        .indicator {
+            background-color: #004080;
+            color: #fff;
+            border-radius: 50%;
+            width: 230px;
+            height: 230px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            text-align: center;
+            flex-direction: column;
+        }
+        .indicator p {
+            margin: 0;
+        }
+        .indicator span {
+            font-weight: bold;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Visualización de Datos de Mundo Ideal Karcal</h1>
+    </div>
+    <div class="container">
+        <div class="indicator-row">
+            <div class="indicator" id="indicador1">
+                <p>Clientes</p>
+                <span></span>
+            </div>
+            <div class="indicator" id="indicador2">
+                <p>Garantías</p>
+                <span></span>
+            </div>
+            <div class="indicator" id="indicador3">
+                <p>Remates</p>
+                <span></span>
+            </div>
+            <div class="indicator" id="indicador4">
+                <p>Pago Restante</p>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box" id="total-clientes">
+                <h2>Total Clientes</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="monto-acumulado-garantia">
+                <h2>Monto Acumulado en Garantías</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="autos-por-categoria">
+                <h2>Autos por Categoría</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="promedio-monto-garantia">
+                <h2>Promedio de Monto de Garantía</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="mediana-pago-restante">
+                <h2>Mediana de Pago Restante</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="cantidad-remates-mes">
+                <h2>Cantidad de Remates por Mes</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="max-monto-garantia">
+                <h2>Máximo Monto de Garantía</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="min-monto-garantia">
+                <h2>Mínimo Monto de Garantía</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="total-remates">
+                <h2>Total de Remates</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="max-pago-restante">
+                <h2>Máximo Pago Restante</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="min-pago-restante">
+                <h2>Mínimo Pago Restante</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="total-monto-pago-restante">
+                <h2>Total Monto de Pago Restante</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="autos-mas-cotizados">
+                <h2>Autos más Cotizados</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="autos-mas-visitados">
+                <h2>Autos más Visitados</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="remates-mas-garantias">
+                <h2>Remates con Más Garantías</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="clientes-mas-remates">
+                <h2>Clientes con Más Remates</h2>
+                <p></p>
+            </div>
+            <div class="stat-box" id="categorias-mas-remates">
+                <h2>Categorías con Más Remates</h2>
+                <p></p>
+            </div>
+        </div>
+
+        <div class="graph">
+            <h2>Distribución de Montos de Garantía</h2>
+            <img src="distribucion_montos_garantia.png" alt="Distribución de Montos de Garantía">
+            <p class="description">
+                Este histograma muestra la distribución de los montos de garantía en las transacciones. La curva de densidad proporciona una visión suave de la distribución. Observamos que la mayoría de los montos de garantía se agrupan en un rango específico.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Número de Remates por Banco</h2>
+            <img src="numero_remates_banco.png" alt="Número de Remates por Banco">
+            <p class="description">
+                El gráfico de barras muestra la cantidad de remates realizados por cada banco. Podemos identificar fácilmente qué bancos tienen mayor actividad en términos de remates.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Evolución Mensual de Remates</h2>
+            <img src="evolucion_mensual_remates.png" alt="Evolución Mensual de Remates">
+            <p class="description">
+                Este gráfico de líneas ilustra cómo ha evolucionado el número de remates a lo largo del tiempo, mostrando la tendencia mensual. Es útil para identificar patrones estacionales o cambios en la actividad de remates.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Distribución de Modelos de Automóvil</h2>
+            <img src="distribucion_modelos_automovil.png" alt="Distribución de Modelos de Automóvil">
+            <p class="description">
+                El gráfico de pastel muestra la distribución de los diferentes modelos de automóviles presentes en los remates. Cada porción representa la proporción de un modelo específico en el total de remates.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Pagos Restantes por Categoría de Automóvil</h2>
+            <img src="pagos_restantes_categoria_automovil.png" alt="Pagos Restantes por Categoría de Automóvil">
+            <p class="description">
+                Este boxplot muestra la distribución de los pagos restantes agrupados por categoría de automóvil. Podemos ver la mediana, los cuartiles y los valores atípicos para cada categoría.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Garantías Recibidas por Mes</h2>
+            <img src="garantias_recibidas_mes.png" alt="Garantías Recibidas por Mes">
+            <p class="description">
+                Este gráfico de barras muestra el monto total de garantías recibidas cada mes. Es útil para identificar patrones mensuales en la recepción de garantías.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Garantías Recibidas por Categoría de Automóvil</h2>
+            <img src="garantias_recibidas_categoria_automovil.png" alt="Garantías Recibidas por Categoría de Automóvil">
+            <p class="description">
+                Este gráfico de barras muestra el monto total de garantías recibidas para cada categoría de automóvil. Nos ayuda a entender qué categorías de automóviles reciben más garantías.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Cantidad de Clicks en "Inicio"</h2>
+            <img src="clicks_inicio.png" alt="Cantidad de Clicks en Inicio">
+            <p class="description">
+                Este histograma muestra la distribución de la cantidad de clicks en la sección "Inicio" del sitio web. Ayuda a entender el nivel de interacción de los usuarios con esta sección específica.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Cantidad de Clicks en "Quiénes Somos"</h2>
+            <img src="clicks_quienes_somos.png" alt="Cantidad de Clicks en Quiénes Somos">
+            <p class="description">
+                Este histograma muestra la distribución de la cantidad de clicks en la sección "Quiénes Somos". Nos permite evaluar el interés de los usuarios en conocer más sobre la empresa.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Cantidad de Clicks en "Contacto"</h2>
+            <img src="clicks_contacto.png" alt="Cantidad de Clicks en Contacto">
+            <p class="description">
+                Este histograma muestra la distribución de la cantidad de clicks en la sección "Contacto". Es útil para medir el nivel de interés de los usuarios en ponerse en contacto con la empresa.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Cantidad de Clicks en "Remates Activos"</h2>
+            <img src="clicks_remates_activos.png" alt="Cantidad de Clicks en Remates Activos">
+            <p class="description">
+                El gráfico de líneas muestra cómo ha variado la cantidad de clicks en la sección "Remates Activos" a lo largo del tiempo. Esto ayuda a identificar picos de interés y posibles factores que influyen en la interacción de los usuarios.
+            </p>
+        </div>
+
+        <div class="graph">
+            <h2>Cantidad de Clicks en "Abonar Garantía"</h2>
+            <img src="clicks_abonar_garantia.png" alt="Cantidad de Clicks en Abonar Garantía">
+            <p class="description">
+                Este boxplot muestra la distribución de la cantidad de clicks en la sección "Abonar Garantía". Podemos observar la mediana, los cuartiles y los valores atípicos para esta métrica.
+            </p>
+        </div>
+    </div>
+    <script>
+        fetch('stats.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('total-clientes').querySelector('p').textContent = data.total_clientes;
+                document.getElementById('monto-acumulado-garantia').querySelector('p').textContent = data.monto_acumulado_garantia.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+
+                const autosPorCategoria = data.autos_por_categoria;
+                let autosPorCategoriaHtml = '<ul>';
+                for (const [categoria, cantidad] of Object.entries(autosPorCategoria)) {
+                    autosPorCategoriaHtml += `<li>${categoria}: ${cantidad}</li>`;
+                }
+                autosPorCategoriaHtml += '</ul>';
+                document.getElementById('autos-por-categoria').querySelector('p').innerHTML = autosPorCategoriaHtml;
+
+                document.getElementById('promedio-monto-garantia').querySelector('p').textContent = data.promedio_monto_garantia.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+                document.getElementById('mediana-pago-restante').querySelector('p').textContent = data.mediana_pago_restante.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+                
+                const rematesPorMes = data.cantidad_remates_mes;
+                let rematesPorMesHtml = '<ul>';
+                for (const [mes, cantidad] of Object.entries(rematesPorMes)) {
+                    rematesPorMesHtml += `<li>${mes}: ${cantidad}</li>`;
+                }
+                rematesPorMesHtml += '</ul>';
+                document.getElementById('cantidad-remates-mes').querySelector('p').innerHTML = rematesPorMesHtml;
+
+                document.getElementById('max-monto-garantia').querySelector('p').textContent = data.max_monto_garantia.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+                document.getElementById('min-monto-garantia').querySelector('p').textContent = data.min_monto_garantia.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+                document.getElementById('total-remates').querySelector('p').textContent = data.total_remates;
+                document.getElementById('max-pago-restante').querySelector('p').textContent = data.max_pago_restante.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+                document.getElementById('min-pago-restante').querySelector('p').textContent = data.min_pago_restante.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+                document.getElementById('total-monto-pago-restante').querySelector('p').textContent = data.total_monto_pago_restante.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+
+                const autosMasCotizados = data.autos_mas_cotizados;
+                let autosMasCotizadosHtml = '<ul>';
+                for (const [modelo, cantidad] of Object.entries(autosMasCotizados)) {
+                    autosMasCotizadosHtml += `<li>${modelo}: ${cantidad}</li>`;
+                }
+                autosMasCotizadosHtml += '</ul>';
+                document.getElementById('autos-mas-cotizados').querySelector('p').innerHTML = autosMasCotizadosHtml;
+
+                const autosMasVisitados = data.autos_mas_visitados;
+                let autosMasVisitadosHtml = '<ul>';
+                for (const [modelo, cantidad] of Object.entries(autosMasVisitados)) {
+                    autosMasVisitadosHtml += `<li>${modelo}: ${cantidad}</li>`;
+                }
+                autosMasVisitadosHtml += '</ul>';
+                document.getElementById('autos-mas-visitados').querySelector('p').innerHTML = autosMasVisitadosHtml;
+
+                const rematesMasGarantias = data.remates_mas_garantias;
+                let rematesMasGarantiasHtml = '<ul>';
+                for (const [fecha, cantidad] of Object.entries(rematesMasGarantias)) {
+                    rematesMasGarantiasHtml += `<li>${fecha}: ${cantidad}</li>`;
+                }
+                rematesMasGarantiasHtml += '</ul>';
+                document.getElementById('remates-mas-garantias').querySelector('p').innerHTML = rematesMasGarantiasHtml;
+
+                const clientesMasRemates = data.clientes_mas_remates;
+                let clientesMasRematesHtml = '<ul>';
+                for (const [cliente, cantidad] of Object.entries(clientesMasRemates)) {
+                    clientesMasRematesHtml += `<li>${cliente}: ${cantidad}</li>`;
+                }
+                clientesMasRematesHtml += '</ul>';
+                document.getElementById('clientes-mas-remates').querySelector('p').innerHTML = clientesMasRematesHtml;
+
+                const categoriasMasRemates = data.categorias_mas_remates;
+                let categoriasMasRematesHtml = '<ul>';
+                for (const [categoria, cantidad] of Object.entries(categoriasMasRemates)) {
+                    categoriasMasRematesHtml += `<li>${categoria}: ${cantidad}</li>`;
+                }
+                categoriasMasRematesHtml += '</ul>';
+                document.getElementById('categorias-mas-remates').querySelector('p').innerHTML = categoriasMasRematesHtml;
+
+                document.getElementById('indicador1').querySelector('span').textContent = data.total_clientes;
+                document.getElementById('indicador2').querySelector('span').textContent = data.monto_acumulado_garantia.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+                document.getElementById('indicador3').querySelector('span').textContent = data.total_remates;
+                document.getElementById('indicador4').querySelector('span').textContent = data.total_monto_pago_restante.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' });
+            });
+    </script>
+</body>
+</html>
